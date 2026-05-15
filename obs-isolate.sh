@@ -8,7 +8,7 @@ DESKTOP_NODE=$(pw-dump | jq --arg name "$DESKTOP_NODE_NAME" '.[] | select(.info.
 APP_NODE=$(pw-dump | jq --arg name "$APP_NODE_NAME" '.[] | select(.info.props["node.name"] == $name) | .id' | head -1)
 OBS_APP_NODE=$(pw-dump | jq --arg name "$OBS_APP_NODE_NAME" '.[] | select(.info.props["media.name"] == $name) | .id' | head -1)
 
-if [ -z "$APP_NODE" ] || [ -z "$OBS_APP_NODE_NAME" ]; then
+if [ -z "$APP_NODE" ] || [ -z "$OBS_APP_NODE" ]; then
     echo "Could not find one or both nodes:"
     echo "  App node: ${APP_NODE:-NOT FOUND}"
     echo "  OBS node: ${OBS_APP_NODE:-NOT FOUND}"
